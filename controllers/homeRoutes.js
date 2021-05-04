@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
+                    as: 'blog_author',
                     attributes: ['username'],
                 },
             ],
@@ -18,27 +19,17 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             posts,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            user_id: req.session.user_id,
         });
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-router.get('/post/:id', async (req, res) => {
-    try {
-        const postData = await Post.findByPk
-    }
-})
-
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
     // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
-      res.redirect('/profile');
-      return;
-    }
-  
     res.render('login');
-  });
+});
   
-  module.exports = router;
+module.exports = router;
