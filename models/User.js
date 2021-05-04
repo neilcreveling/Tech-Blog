@@ -21,7 +21,7 @@ User.init(
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true,
+          isUsername: true,
         },
       },
       password: {
@@ -44,7 +44,7 @@ User.init(
         },
       },
       sequelize,
-      timestamps: false,
+      timestamps: true,
       freezeTableName: true,
       underscored: true,
       modelName: 'user',

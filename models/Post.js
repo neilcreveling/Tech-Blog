@@ -19,16 +19,18 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        date: {
+        date_created: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
-        contents: {
-            type: DataTypes.STRING,
+        content: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'user',
                 key: 'id',
