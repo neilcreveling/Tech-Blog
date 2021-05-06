@@ -1,0 +1,11 @@
+<h2>{{singlePostData.title}}</h2>
+<h3>By: {{singlePostData.post_author.username}}</h3>
+<p>Posted on: {{format_date singlePostData.date_created}}</p>
+
+<div>
+  <p>{{singlePostData.content}}</p>
+</div>
+
+{{> comments}}
+
+{{> post-comment}}
