@@ -1,8 +1,8 @@
-const { Comment } = require('../..models');
+const { Comment } = require('../../models');
 const router = require('express').Router();
 
 // add comment
-router.post('/:user_id/:blog_id', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newComment = await Comment.create({
             user_id: req.params.user_id,
@@ -47,3 +47,15 @@ router.delete('/:id', async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+router.get("/", async (req, res) => {
+    try {
+      const allComments = await Comment.findAll();
+      const commentData = allComments.map((user) => user.get({ plain: true }));
+      res.status(200).json(commentData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+module.exports = router;
