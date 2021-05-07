@@ -2,7 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { User, Post, Comment } = require('../models');
 
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
@@ -24,14 +24,6 @@ router.get('/:id', withAuth, async (req, res) => {
         });
 
         const userPost = postData.map((post) => post.get({ plain: true }));
-
-        const commentData = await Comment.findAll({
-            where: {
-                post_id: req.params.id,
-            },
-        });
-
-        const comments = commentData.map((comment) => comment.get({ plain: true }));
 
         res.render('dashboard', {
             user,
