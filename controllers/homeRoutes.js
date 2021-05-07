@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -33,4 +33,33 @@ router.get('/', (req, res) => {
     res.render('login');
 });
   
-module.exports = router;
+router.get("/login", async (req, res) => {
+    try {
+      if (req.session.logged_in) {
+        res.redirect("/");
+        return;
+      } else {
+        res.status(200).render("login");
+      }
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
+  
+  router.get("/signup", async (req, res) => {
+    try {
+      res.status(200).render("signup");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
+  router.get("/logout", async (req, res) => {
+    try {
+      res.status(200).json("Logged out!");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
+  module.exports = router;
