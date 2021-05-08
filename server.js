@@ -27,8 +27,6 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exhbs.create({ helpers });
-
 // Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

@@ -1,7 +1,7 @@
 const deletePost = async (event) => {
   event.preventDefault();
 
-  console.log("hi delete");
+  console.log("Hello there");
   const post_id = document.getElementById("delete-post").value;
   console.log(post_id);
 
