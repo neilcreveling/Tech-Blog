@@ -1,3 +1,6 @@
+console.log('Welcome!')
+
+
 const deletePost = async (event) => {
   event.preventDefault();
 

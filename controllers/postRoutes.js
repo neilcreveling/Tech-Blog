@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
             }
         });
 
-        const blogComments = commentsData.map((Comment) =>
+        const blogComments = commentsData.map((comment) =>
             comment.get({ plain: true })
         );
 
