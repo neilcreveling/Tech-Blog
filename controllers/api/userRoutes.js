@@ -22,10 +22,7 @@ router.post('/', async (req, res) => {
             req.session.logged_in = true;
             req.session.username = newUserData.username;
             req.session.user_id = newUserData.id;
-            res.status(200).json('homepage', {
-                logged_in: req.session.logged_in,
-                user_id: req.session.user_id,
-            });
+            res.status(200).json(newUserData);
         });
     } catch (err) {
         res.status(500).json(err);
